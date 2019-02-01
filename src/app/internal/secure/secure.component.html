@@ -1,0 +1,39 @@
+<div id="main" style="margin-top:20px;margin-left:20%;">
+    <div id="first">
+        <div style="width:40%;margin-left:50px;" class="card">
+            <div class="card-header sticky-top" style="border:0;background-color: white;margin:0 auto;">
+                <!--search box-->
+                <form autocomplete="off">
+                    <div class="input-group mb-3">
+                        <input id="search-box" type="text" placeholder="search by username" name="search" [(ngModel)]="searchText">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-body">
+                <!--user list-->
+                <div id="user_list" *ngFor="let user of users | filter: searchText">
+                    <div id="image">
+                        <img class="imageBox" *ngIf="user.profilePicture" src="{{imageUrl}}/{{user.profilePicture}}">
+                        <img class="imageBox" title="No Image" *ngIf="!user.profilePicture" src="assets/no_user_logo.jpeg">
+                    </div>
+                    <div id="list">
+                        <span class="list_items"> <b>{{ user.username }}</b> </span> <br>
+                        <span class="list_items"> {{ user.job }} in {{ user.company }} </span> <br>
+                        <span class="list_items"> Lives in {{ user.city }} </span>
+                        <hr>
+                    </div>
+                    <div id="action"><br>
+                        <button class="btn btn-danger" type="button" (click)="deleteUser(user.email)"><i class="fa fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="second">
+        
+    </div>
+</div>

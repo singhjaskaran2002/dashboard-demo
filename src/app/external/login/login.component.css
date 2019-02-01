@@ -1,0 +1,89 @@
+.text {
+    border-radius: 0;
+}
+
+.input-group {
+    margin: 0 auto;
+    width: 300px;
+}
+
+.form-control {
+    padding: 0 20px;
+    border: 0;
+    background-color: powderblue;
+}
+
+.input-group-text {
+    width: 35px;
+}
+
+#main {
+    display: flex;
+    min-height: 100%;
+}
+
+#first {
+    width: 100%;
+    height: 100vh;
+    flex: 1.4;
+}
+
+#second {
+    margin-top: 20px;
+    padding: 50px;
+    flex: 0.6;
+}
+
+#first img {
+    width: 100%;
+    min-height: 100%;
+}
+
+#sign-in-img {
+    width: 130px;
+    height: 130px;
+}
+
+#otpVerificationForm {
+    margin-top: 100px;
+    padding: 0 50px;
+    flex: 0.6;
+}
+
+#contact_verification {
+    margin-top: 100px;
+    padding: 0 50px;
+    flex: 0.6;
+}
+
+#contact_box {
+    width: 100%;
+    border-radius: 100px;
+}
+
+#contact_box:focus {
+    outline: none;
+}
+
+#otpBox {
+    text-align: center;
+    border: 0;
+    background-color: aqua;
+    padding: 15px 0;
+}
+
+.pass-box {
+    border: 0;
+    background-color: aqua;
+    padding: 15px 15px;
+}
+
+#otpBox:focus {
+    outline: none;
+}
+
+#resetPasswordForm {
+    margin-top: 100px;
+    padding: 0 50px;
+    flex: 0.6;
+}

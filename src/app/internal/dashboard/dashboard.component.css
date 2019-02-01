@@ -1,0 +1,91 @@
+#main {
+    margin-top: 20px;
+    margin-left: 20%;
+}
+
+#first, #video {
+    padding: 0% 5%;
+    display: flex;
+}
+
+#firstChild {
+    flex: 1;
+    height: 400px;
+    width: auto;
+    overflow-y: scroll;
+    border-radius: 0;
+}
+
+#secondChild {
+    border-radius: 0;
+    flex: 1;
+    overflow-y: scroll;
+    height: 400px;
+    width: auto;
+}
+
+/* user-list */
+
+#user-list {
+    /* padding: 10px 20px; */
+    display: flex;
+}
+
+#user-list-image {
+    flex: 0.3;
+}
+
+#user-list-details {
+    flex: 1;
+}
+
+#user-list-actions {
+    flex: 0.3;
+}
+
+/* scroll bar design */
+
+::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #494949;
+}
+
+#friendListHeader {
+    border-radius: 0;
+    background-color: #FFFFFF;
+    opacity: 1;
+}
+
+.profile-header {
+    border-radius: 0;
+    background-color: #FFFFFF;
+}
+
+@media(max-width:100%) {
+    #firstChild {
+        width: 100%;
+    }
+    #secondChild {
+        width: 100%
+    }
+}
+
+.paymentForm {
+    position: absolute;
+    width: 90%;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 10px;
+    bottom: 20px;
+    left: 20px;
+    -webkit-box-shadow: 0px 10px 37px -19px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 10px 37px -19px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 10px 37px -19px rgba(0, 0, 0, 0.75);
+}

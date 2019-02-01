@@ -1,0 +1,36 @@
+<div id="sidebar" class="w3-sidebar w3-bar-block" style="width:20%;background-color:#061123;color:white;">
+
+    <span class="w3-bar-item" style="background-color:#061123;"><i class="fa fa-leaf"></i>&nbsp;<strong>NEXTBASE</strong>
+    </span>
+    <div style="background-color:#cce3fc;color:#070707;padding:20px 0;">
+
+
+
+        <img *ngIf="imageUrl" class="w3-animate-left" [src]="imageUrl" height="100px" width="100px" style="border-radius:100px;margin-left:20px;">
+        <img *ngIf="!imageUrl" class="w3-animate-left" src="assets/no_user_logo.jpeg" height="100px" width="100px"
+            style="border-radius:100px;margin-left:20px;">
+
+
+
+
+        <span class="w3-animate-right" style="margin-left:20px;font-size: 15px;">{{ userLogged }}</span>
+    </div>
+    <br>
+    <a [class]="dashboardClass" (click)="activeDashboard()"><i class="fa fa-dashboard"></i>&nbsp;&nbsp;Dashboard </a>
+    <a [class]="adminClass" *ngIf="admin === 'jaskaran@gmail.com'" (click)="activeAdmin()"><i class="fa fa-lock"></i>&nbsp;&nbsp;Admin
+        Operations</a>
+    <a [class]="profileClass" (click)="activeProfile()"><i class="fa fa-user"></i>&nbsp;&nbsp;Profile</a>
+
+    <!-- <br><br>
+
+    <a class="w3-bar-item w3-button w3-grey"><i class="fa fa-comment"></i>&nbsp;&nbsp;Online Users </a>
+    <ng-container *ngFor="let user of usersOnline">
+        <ul id="userOnlineList">
+            <li *ngIf="user.email !== userLoggedEmail">
+                <a class="w3-bar-item w3-button"> {{ user.name }} <i class="pull-right"><button style="border-radius: inherit"
+                            class="btn btn-light btn-sm pull-right" (click)="chatClicked(user.email, user.name) ">
+                            Chat </button></i></a>
+            </li>
+        </ul>
+    </ng-container> -->
+</div>

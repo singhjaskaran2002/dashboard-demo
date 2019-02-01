@@ -1,0 +1,46 @@
+<div id="main" style="margin-top:20px;margin-left:25%;">
+
+    <div id="chat" class="container w3-animate-zoom">
+        <div class="card" style="padding:0;margin:0;">
+            <div class="card-header chat_user" style="background-color: #e6dada;">
+                <img style="height:60px;width:60px;border-radius:50px;flex:0.1" src="{{ imageUrl }}/{{ chatRecepient }}">&nbsp;&nbsp;&nbsp;
+                <span style="flex:1;">
+                    <b style="font-size:20px;">{{ recepientName }}</b><br>
+                    <i *ngIf="typing" style="font-weight:lighter;">typing...</i>
+                    <!-- <i *ngIf="online_user" style="font-weight:lighter;">online</i> -->
+                </span>
+                <hr>
+            </div><br>
+            <div class="card-body" style="height:350px;overflow-y:scroll;padding:0;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+                <ul class="chat-list">
+                    <ng-container *ngFor="let item of messageArray">
+                        <li [class.out]="item.sender === loggedEmail" [class.in]="item.receiver === loggedEmail">
+                            <div class="chat-body">
+                                <div class="chat-message">
+                                    <p id="p_mesg">{{ item.message }}</p>
+                                    <span style="font-size:10px;">{{ item.time }}</span>
+                                </div>
+                            </div>
+                        </li><br>
+                    </ng-container>
+                </ul>
+            </div>
+            <form autocomplete="off">
+
+                <div class="form-group">
+                    <div id="mainInputBox">
+                        <div id="messageBoxd">
+                            <input type="text" style="border-radius:0;border:0;padding:4px 20px;width:100%;background-color:powderblue;"
+                                id="messageBox" (keydown)="user_typing()" name="message" [(ngModel)]="message"
+                                placeholder="Enter message">
+                        </div>
+                        <div id="sendButton">
+                            <button class="btn btn-primary btn-sm pull-right" style="border-radius:0;" type="submit"
+                                [disabled]="!message" (click)="sendMessage()"> Send </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

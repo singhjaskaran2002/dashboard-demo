@@ -1,0 +1,40 @@
+<div id="main">
+  <form class="paymentForm" (ngSubmit)="buy()" [formGroup]="paymentForm">
+    <!-- <div id="brand_logo">
+      <img class="brand-logo" src="assets/maestro_logo.png">
+      <img class="brand-logo" src="assets/visa_logo.png">
+      <img class="brand-logo" src="assets/rupay_logo.png">
+    </div> -->
+    <!-- <input type="text" formControlName="name" placeholder="Enter name" />
+    <input type="email" formControlName="email" placeholder="Enter e-mail" /> -->
+    <!-- <br><br> -->
+    <div style="width:40%;">
+      <b>Donation Details:</b>
+      <hr>
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="frm-control" formControlName="amount" placeholder="Enter amount">
+      <p class="text-danger" *ngIf="paymentForm.controls['amount'].hasError('required') && paymentForm.controls['amount'].touched">Please
+        enter amount</p>
+    </div>
+
+    <div class="form-group">
+      <input type="text" formControlName="description" placeholder="Enter description">
+      <p class="text-danger" *ngIf="paymentForm.controls['description'].hasError('required') && paymentForm.controls['description'].touched">Please
+        enter description</p>
+    </div>
+
+    <br>
+
+    <b>Card Details: </b>
+    <hr>
+    <ngx-stripe-card id="card-details" [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+    <hr>
+    <button class="btn btn-sm pull-right" type="submit">
+      <i *ngIf="spinner" class="fa fa-spinner fa-spin"></i>
+      <b *ngIf="!spinner">Take My Money</b>
+
+    </button>
+  </form>
+</div>

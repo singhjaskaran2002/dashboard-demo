@@ -1,0 +1,72 @@
+<div class="container" style="margin-top:20px;margin-left:20%;">
+    <div class="row profile">
+        <div class="col-md-3">
+            <div class="profile-sidebar">
+                <div>
+
+                    <!-- <div class="profile-userpic" *ngIf="isEdit">
+            <label><strong>Image to be Uploaded: </strong></label>
+            <img [src]="croppedImage">
+            <br><br><br>
+          </div> -->
+
+                    <div>
+                        <div class="profile-userpic">
+
+                            <img [src]="imageUrl" *ngIf="imageUrl" (click)="openImage()">
+                            <img src="assets/no_user_logo.jpeg" *ngIf="!imageUrl" (click)="openImage()">
+
+                            <label for="file-upload" class="custom-file-upload">
+                                <i class="fa fa-edit"></i></label>
+                            <input class="inputStyle" id="file-upload" (change)="onChangePicture($event)" type="file" />
+                        </div>
+
+                        <div class="profile-usertitle">
+                            <div class="profile-usertitle-name">
+                                {{ userData.username }}
+                            </div>
+                            <div class="profile-usertitle-job">
+                                {{ userData.job }}
+                            </div>
+                            <div class="profile-usertitle-city">
+                                (from {{ userData.city }})
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <hr>
+                <br><br><br>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR BUTTONS -->
+                <div class="profile-userbuttons">
+                    <button type="button" class="btn btn-success btn-sm" [routerLink]="['/internal/profile/update']"><i
+                            class="fa fa-edit"></i>
+                        Edit Profile </button>
+                </div>
+                <!-- END SIDEBAR BUTTONS -->
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="profile-content">
+                <div class="card" style="width:500px;height:400px;">
+                    <!-- <div *ngIf="isEdit" class="card-body">
+            <label><strong>Choose dimensions: </strong></label>
+            <image-cropper style="height:400px;" [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3"
+              [resizeToWidth]="128" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+              (loadImageFailed)="loadImageFailed()"></image-cropper>
+            <br><br>
+            <button style="margin-left:250px;" class="btn btn-warning btn-sm" (click)="cancelUpload()"><i class="fa fa-arrow-left"></i>
+              Back to Profile </button> &nbsp;
+            <button class="btn btn-primary btn-sm" (click)="uploadFile()">
+              <i class="fa fa-cloud-upload"></i> Upload </button>
+          </div> -->
+                    <div class="card-body">
+                        <!--*ngIf="!isEdit"-->
+                        {{ userData.company }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

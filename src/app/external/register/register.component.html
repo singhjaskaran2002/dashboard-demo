@@ -1,0 +1,150 @@
+<div id="main">
+    <div id="first">
+        <img src="assets/logo1.jpeg">
+    </div>
+
+    <div id="regsiterForm" *ngIf="step1" class="w3-animate-right">
+        <form [formGroup]="form" (ngSubmit)="register()" autocomplete="off">
+            <div class="form-group">
+                <h2 style="font-weight:bolder;text-align:center;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Register
+                    Form</h2>
+            </div>
+
+            <br><br>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-at"></i></span>
+                    </div>
+                    <input class="form-control" type="text" placeholder="Enter email" formControlName="email">
+                </div>
+                <div *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" style="font-size:15px;margin-top:-15px;"
+                    class="text-danger">Please enter email</div>
+                <div *ngIf="form.controls['email'].hasError('pattern') && form.controls['email'].touched" style="font-size:15px;margin-top:-15px;"
+                    class="text-danger">Please enter valid email</div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
+                    </div>
+                    <input class="form-control" [type]="type" placeholder="Enter password" formControlName="password">
+                    <div class="input-group-prepend">
+                        <span style="background-color:powderblue;border:0;cursor: pointer;" *ngIf="!showPass" (click)="togglePassword()"
+                            class="input-group-text" id="basic-addon1"><i class="fa fa-eye"></i></span>
+                        <span style="background-color:powderblue;border:0;cursor: pointer;" *ngIf="showPass" (click)="togglePassword()"
+                            class="input-group-text" id="basic-addon1"><i class="fa fa-eye-slash"></i></span>
+                    </div>
+                </div>
+                <div *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" style="font-size:15px;"
+                    class="text-danger">Please enter password</div>
+                <div *ngIf="form.controls['password'].hasError('minlength') && form.controls['password'].touched" style="font-size:15px;"
+                    class="text-danger">Password must be of 8 characters</div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                    </div>
+                    <input class="form-control" type="text" placeholder="Enter name" formControlName="username">
+                </div>
+                <div *ngIf="form.controls['username'].hasError('required') && form.controls['username'].touched" style="font-size:15px;"
+                    class="text-danger">Please enter username</div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i></span>
+                    </div>
+                    <input class="form-control" type="text" placeholder="Enter contact number without country code"
+                        formControlName="contact" maxlength="10">
+                </div>
+                <div *ngIf="form.controls['contact'].hasError('required') && form.controls['contact'].touched" style="font-size:15px;"
+                    class="text-danger">Please enter contact number</div>
+                <div *ngIf="form.controls['contact'].hasError('minlength') && form.controls['contact'].touched" style="font-size:15px;"
+                    class="text-danger">Contact must be of 10 characters</div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-location-arrow"></i></span>
+                    </div>
+                    <input class="form-control" type="text" placeholder="Enter city" formControlName="city">
+                </div>
+                <div *ngIf="form.controls['city'].hasError('required') && form.controls['city'].touched" style="font-size:15px;"
+                    class="text-danger">Please enter city</div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-university"></i></span>
+                    </div>
+                    <input class="form-control" type="text" placeholder="Enter occupation" formControlName="job">
+                </div>
+                <div *ngIf="form.controls['job'].hasError('required') && form.controls['job'].touched" style="font-size:15px;"
+                    class="text-danger">Please enter occupation</div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-tasks"></i></span>
+                    </div>
+                    <textarea class="form-control" placeholder="Enter company" formControlName="company"></textarea>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="form-group" style="text-align: right;">
+                <button type="button" class="btn btn-warning btn-sm" [routerLink]="['/login']"><i class="fa fa-arrow-left"></i>
+                    Back to Login </button> &nbsp;
+                <button style="width:80px;" type="submit" class="btn btn-primary btn-sm">
+                    <i *ngIf="showSpinner" class="fa fa-circle-o-notch fa-spin"></i>
+                    <b *ngIf="!showSpinner">Register</b>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- OTP verification Form -->
+    <div id="otpVerificationForm" *ngIf="step2" class="w3-animate-right container be-detail-container">
+        <div class="col-sm-offset-3">
+            <div style="text-align: center;">
+                <img src="https://cdn2.iconfinder.com/data/icons/luchesa-part-3/128/SMS-512.png" class="img-responsive"
+                    style="width:150px; height:150px;">
+            </div>
+            <br>
+            <h1 class="text-center">Verify your contact</h1><br>
+            <p> Thanks for giving your details. An OTP has been sent to your Mobile Number. Please enter the 6
+                digit OTP below for Successful Registration</p>
+            <p></p>
+            <br>
+            <form [formGroup]="form1" (ngSubmit)="confirmOTP()" autocomplete="off">
+                <div class="form-group">
+                    <input type="password" class="form-control" maxlength="6" id="otpBox" placeholder="- - - - - -"
+                        formControlName="otp">
+                </div>
+                <br>
+                <div class="form-group" style="text-align: right;">
+                    <button style="width:100px;" *ngIf="resend_otp" type="button" class="btn btn-warning btn-sm"
+                        (click)="resend_Otp()">
+                        <!-- <button style="width:80px;" type="submit" class="btn btn-primary btn-sm"> -->
+                        <i *ngIf="showSpinner2" class="fa fa-circle-o-notch fa-spin"></i>
+                        <b *ngIf="!showSpinner2"> Resend OTP </b>
+                        <!-- </button> -->
+                    </button> &nbsp;
+                    <button [disabled]="form1.controls['otp'].hasError('required') || form1.controls['otp'].hasError('minlength')"
+                        type="submit" class="btn btn-primary btn-sm" *ngIf="!resend_otp"> Confirm </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

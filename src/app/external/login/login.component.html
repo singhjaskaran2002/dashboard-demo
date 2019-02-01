@@ -1,0 +1,173 @@
+<div id="main">
+
+    <div id="first" class="w3-center w3-animate-zoom">
+        <img src="assets/logo1.jpeg">
+    </div>
+
+    <div *ngIf="step1" id="second" class="w3-container w3-center w3-animate-right">
+        <form [formGroup]="form" (ngSubmit)="login()" autocomplete="off">
+
+            <div class="form-group">
+                <h2 style="font-weight:bold;text-align: center;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">Sign
+                    in</h2>
+            </div>
+
+            <div style="text-align: center;" class="w3-container w3-center w3-animate-bottom">
+                <img id="sign-in-img" src="assets/sign-in.png">
+            </div>
+
+            <br><br>
+
+            <div class="form-group">
+                <div class="input-group" style="width:100%;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                    </div>
+                    <input class="text" class="form-control" type="text" placeholder="Enter email" formControlName="email">
+                </div>
+                <div *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" style="font-size:15px;text-align:left;"
+                    class="text-danger">Please enter email</div>
+                <div *ngIf="form.controls['email'].hasError('pattern') && form.controls['email'].touched" style="font-size:15px;text-align:left;"
+                    class="text-danger">Please enter valid email</div>
+            </div>
+
+            <div style="text-align: center;" class="form-group">
+                <div class="input-group" style="width:100%;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
+                    </div>
+                    <input class="text" class="form-control" type="password" placeholder="Enter password"
+                        formControlName="password">
+                </div>
+                <div *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" style="font-size:15px;text-align:left;"
+                    class="text-danger">Please enter password</div>
+            </div>
+            <br>
+            <div class="form-group" style="text-align:inherit;margin:0 auto;">
+                <button type="submit" style="border-radius:0;" class="btn btn-primary btn-sm pull-right"><i class="fa fa-sign-in"></i>
+                    Login </button>
+                <br><br><br>
+                <hr>
+                Don't have an account ?&nbsp;&nbsp; <a href="javascript:void(0)" [routerLink]="['/register']"> Sign up
+                </a>
+                <br>
+                <a href="javascript:void(0)" (click)="forgotPassword()"> Forgot your Password ?</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- contact verification form to send OTP -->
+    <div id="contact_verification" *ngIf="step2" class="w3-animate-right form-group">
+        <div style="text-align:center;font-size:25px;">
+            <strong>Forgot Password ?</strong>
+        </div>
+        <hr>
+        <div style="text-align:center;">
+            <img src="assets/forgot_password.png" style="width:150px;height:150px;">
+        </div>
+        <br><br>
+        <form [formGroup]="form1" autocomplete="off" (ngSubmit)="sendOtp()">
+            <span>
+                Enter your registered contact number and you will get an OTP.
+            </span>
+            <br><br>
+            <div>
+                <input id="contact_box" maxlength="10" minlength="10" class="form-control" type="text" placeholder="enter contact without country code"
+                    formControlName="contact">
+            </div>
+            <br><br>
+            <div style="text-align: center;">
+                <button type="submit" style="width:100px;border-radius:0;" class="btn btn-primary btn-sm">
+                    <i *ngIf="showSpinner" class="fa fa-circle-o-notch fa-spin"></i>
+                    <b *ngIf="!showSpinner"> Send OTP </b>
+                </button>
+            </div>
+        </form>
+        <hr>
+    </div>
+
+    <!-- OTP verification Form -->
+    <div id="otpVerificationForm" *ngIf="step3" class="w3-animate-right container be-detail-container">
+        <div class="col-sm-offset-3">
+            <div style="text-align: center;">
+                <img src="https://cdn2.iconfinder.com/data/icons/luchesa-part-3/128/SMS-512.png" class="img-responsive"
+                    style="width:150px; height:150px;">
+            </div>
+            <br>
+            <h1 class="text-center">Verify your contact</h1><br>
+            <p> Thanks for giving your details. An OTP has been sent to your Mobile Number. Please enter the 6
+                digit OTP below for Successful Registration</p>
+            <p></p>
+            <br>
+            <form [formGroup]="form2" (ngSubmit)="confirmOTP()" autocomplete="off">
+                <div class="form-group">
+                    <input type="password" class="form-control" maxlength="6" id="otpBox" placeholder="------"
+                        formControlName="otp">
+                </div>
+                <br>
+
+                <div class="form-group" style="text-align: right;">
+                    <button type="button" class="btn btn-light btn-sm pull-left" (click)="contactAgain()"><i class="fa fa-arrow-left"></i>
+                        Enter contact again
+                    </button>
+
+                    <button *ngIf="resend_active" style="width:100px;" type="button" class="btn btn-warning btn-sm"
+                        (click)="resendOTP()">
+                        <i *ngIf="showSpinner2" class="fa fa-circle-o-notch fa-spin"></i>
+                        <b *ngIf="!showSpinner2"> Resend OTP </b>
+                    </button> &nbsp;
+                    <button [disabled]="form2.controls['otp'].hasError('required') || form2.controls['otp'].hasError('minlength')"
+                        type="submit" class="btn btn-primary btn-sm"> Confirm </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- reset password form -->
+    <div id="resetPasswordForm" *ngIf="step4" class="w3-animate-right container be-detail-container">
+        <div class="col-sm-offset-3">
+            <div style="text-align: center;">
+                <img [src]="imageUrl" class="img-responsive" style="width:150px; height:150px;">
+            </div>
+            <br>
+            <h1 class="text-center">Reset Password</h1><br>
+
+            <br>
+            <form [formGroup]="form3" (ngSubmit)="resetPassword()" autocomplete="off">
+                <div class="form-group">
+
+
+                    <input type="password" class="form-control pass-box" placeholder="Enter new Password"
+                        formControlName="newPass">
+                    <div *ngIf="form3.controls['newPass'].hasError('required') && form3.controls['newPass'].touched"
+                        style="font-size:15px;" class="text-danger">Please enter password</div>
+                    <div *ngIf="form3.controls['newPass'].hasError('minlength') && form3.controls['newPass'].touched"
+                        style="font-size:15px;" class="text-danger">Password must be of 8 characters</div>
+                    <br>
+                    <div class="input-group" style="width:100%;">
+                        <input type="password" class="form-control pass-box" (keyup)="comparePass()" placeholder="Confirm new Password"
+                            formControlName="confirmPass">
+                        <div class="input-group-prepend">
+                            <span style="background-color:aqua;color:red;border:0;cursor: none;" *ngIf="un_matched_pass"
+                                class="input-group-text" id="basic-addon1"><i class="fa fa-times"></i></span>
+                            <span style="background-color:aqua;color:green;border:0;cursor: none;" *ngIf="!un_matched_pass"
+                                class="input-group-text" id="basic-addon1"><i class="fa fa-check"></i></span>
+                        </div>
+                    </div>
+                    <div *ngIf="form3.controls['confirmPass'].hasError('required') && form3.controls['confirmPass'].touched"
+                        style="font-size:15px;" class="text-danger">Please confirm password</div>
+                    <div *ngIf="form3.controls['confirmPass'].hasError('minlength') && form3.controls['confirmPass'].touched"
+                        style="font-size:15px;" class="text-danger">Password must be of 8 characters</div>
+                </div>
+                <br>
+
+                <div class="form-group" style="text-align: right;">
+                    <button style="border-radius:0;" type="submit" class="btn btn-primary btn-sm"> Submit </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>

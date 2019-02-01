@@ -1,0 +1,42 @@
+<div class="card" style="margin-top:20px;margin-left:25%;width:900px;">
+
+  <div class="card-header">
+    <h3 style="font-weight: bolder;"> Edit Profile </h3>
+    <button type="button" class="btn btn-secondary btn-sm pull-right" [routerLink]="['/internal/profile']"><i class="fa fa-arrow-left"></i>
+      Profile </button>
+  </div>
+  <form [formGroup]="form" autocomplete="off">
+    <div class="card-body" style="padding:20px 50px;">
+
+      <div class="form-group">
+        <label><strong>Username:</strong> </label>
+        <input class="form-control" formControlName="username" type="text" placeholder="Enter username"
+          style="border:0;background-color:rgb(200, 251, 251)">
+        <div class="text-danger" *ngIf="form.controls['username'].hasError('required') && form.controls['username'].touched">Please enter username</div>
+      </div>
+
+      <div class="form-group">
+        <label><strong>Occupation:</strong> </label>
+        <input class="form-control" formControlName="job" type="text" placeholder="Enter occupation"
+          style="border:0;background-color:rgb(200, 251, 251)">
+          <div class="text-danger" *ngIf="form.controls['job'].hasError('required') && form.controls['job'].touched">Please enter job</div>
+      </div>
+
+      <div class="form-group">
+        <label><strong>City:</strong> </label>
+        <input class="form-control" type="text" formControlName="city" placeholder="Enter city"
+          style="border:0;background-color:rgb(200, 251, 251)">
+          <div class="text-danger" *ngIf="form.controls['city'].hasError('required') && form.controls['city'].touched">Please enter city</div>
+      </div>
+
+      <div class="form-group">
+        <label><strong>Company:</strong> </label>
+        <textarea class="form-control" formControlName="company" placeholder="Enter company" style="border:0;background-color:rgb(200, 251, 251)"></textarea>
+      </div>
+
+    </div>
+    <div class="card-footer" style="text-align: right;background-color: rgb(142, 255, 255)">
+      <button type="button" class="btn btn-primary btn-sm" (click)="updateData()"> Update </button>
+    </div>
+  </form>
+</div>

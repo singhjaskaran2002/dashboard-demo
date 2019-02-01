@@ -1,0 +1,45 @@
+.paymentForm {
+    height: 80%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+/* #brand_logo {
+    display: flex;
+}
+
+.brand-logo {
+    flex: 1;
+    height: 30%;
+    width: 30%;
+} */
+
+.text-danger {
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.paymentForm input {
+    /* margin-bottom: 10px; */
+    padding: 5px;
+    border: 0;
+    border-bottom: 1px solid #a88989;
+    width: 100%;
+    display: block;
+    font-size: 1rem;
+    color: #111;
+    text-indent: 10px;
+}
+
+.paymentForm input:focus {
+    outline: none;
+}
+
+.btn {
+    border-radius: 0;
+    min-width: 150px;
+    background: rgb(255, 197, 5);
+    color: #111;
+    text-indent: 0;
+    width: auto;
+}
